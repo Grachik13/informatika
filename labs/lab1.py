@@ -1,12 +1,13 @@
 # task9
+def task9():
+    def convert_dollars_of_tenge(dollars):
+        commission = 0.05
+        tenge = dollars * 481
+        total_amount = tenge - (tenge * commission)
+        return round(total_amount, 3)
 
-def convert_dollars_of_tenge(dollars):
-    commission = 0.05
-    tenge = dollars * 481
-    total_amount = tenge - (tenge * commission)
-    return round(total_amount, 3)
-
-print(" ")
+    print(" ")
+task9
 
 dollars_amount = float(input("Enter the amount of dollars: "))
 result = convert_dollars_of_tenge(dollars_amount)
@@ -53,3 +54,38 @@ x = float(input("Введите значение x: "))
 # f = math.sqrt(math.log(math.cos(math.sqrt(x))))
 f = math.sqrt(math.log(math.cos(1)))
 print(f)
+
+
+
+
+
+
+
+
+
+
+def task6():
+    pass
+
+
+def task7():
+    print()
+    print("~~~ Задание: найдите решение системы линейных уравнений ~~~")
+    print()
+
+    A1, B1, C1, A2, B2, C2 = map(float, input("Введите значения коэффициентов: ").split())
+
+    print()
+    print("~~~ Используя приведённые формулы ниже, найдем значения y ~~~")
+    print()
+
+    D = A1 * B2 - A2 * B1
+    x = (C1 * B1 - C2 * B1) / D
+    y = (A1 + C2 - A2 * C1) / D
+
+    C1 = A1 * x + B1 * y
+    C2 = A2 * x + B2 * y
+    print("Значения коэффициентов: A1 = {0:.4f}, B1 = {1:.4f}, C1 = {2:.4f}, A2 = {3:.4f}, B2 = {4:.4f}, C2 = {5:.4f}".format(A1, B1, C1, A2, B2, C2))
+    print("Ответ: y = {0:.4f}".format(y))
+
+task6()
