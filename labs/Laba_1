@@ -41,6 +41,7 @@ def task3():
 # task3()
 
 
+
 def task4():
     a = float(input("Введите значение a: "))
     b = float(input("Введите значение b: "))
@@ -57,6 +58,7 @@ def task4():
     print(f"b = {b}")
     print(f"c = {c}")
 # task4()
+
 
 
 def task5():
@@ -77,8 +79,21 @@ def task5():
 task5()
 
 
-#def task6():
+
+def task6():
+
+    a = float(input("Введите занчение a: "))
+    b = float(input("Введите занчение b: "))
+    c = float(input("Введите занчение c: "))
+
+    if ((a + b) > c) and ((a + c) > b) and ((b + c) > a):
+        print("Треугольник является прямоугольным ==>")
+        area = (a + b + c) / 2
+        print("==> Площадь треугольника равна {0:.4f} у.е".format(area))
+    else:
+        print("Треугольник не является прямоугольным ==> невозможно определить площадь треугольника")
 # task6()
+
 
 
 def task7():
