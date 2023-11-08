@@ -115,4 +115,18 @@ def task7():
 # task7()
 
 
-# def task8():
+
+def task8():
+
+    import math
+    n = float(input("Введите количество оборотов: "))
+    v = float(input("Введите скорость (м/с): "))
+    R = float(input("Введите радиус окружности (м): "))
+    t = float(input("Введите время после начала движения (с): "))
+
+    full_rotation_time = n * 2 * math.pi * R / v
+    tangential_acceleration = v / full_rotation_time ** 2
+    normal_acceleration = (tangential_acceleration * full_rotation_time * t) ** 2 / R
+    
+    print(f"Нормальное ускорение через {t} с после начала движения: " f"{normal_acceleration:0.4f} м/с^2")
+# task8()
