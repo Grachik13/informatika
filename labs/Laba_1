@@ -130,3 +130,19 @@ def task8():
     
     print(f"Нормальное ускорение через {t} с после начала движения: " f"{normal_acceleration:0.4f} м/с^2")
 # task8()
+
+
+
+def task9():
+
+    current_price = 35
+    target_price = float(input("Введите стоимость поездки (руб): "))
+    increase = 0.04
+
+    year = 0
+    while current_price < target_price:
+        current_price += (current_price * increase)
+        year += 1
+
+    print(f"Стоимость поездки в размере {target_price:0.0f} рублей, будет достигнута через " f"{year:0.0f} год(-а) / лет")
+# task9()
