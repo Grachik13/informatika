@@ -24,7 +24,7 @@ def task1():
 def task3():
     def decimnal_in_new_system(number, base):
         if base < 2 or base > 36:
-            return "Ошибка: Основание должно быть в диапазоне от 2 до 36"
+            print("!!! Ошибка: Основание должно быть в диапазоне от 2 до 36 !!!")
 
         integer_part = int(number)
         fractional_par = number - integer_part
