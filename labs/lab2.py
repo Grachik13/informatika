@@ -18,6 +18,37 @@ def task1():
             print(f"{number} - число оканчивается на чётную цифру")
         if is_divisible_by_three(number):
             print(f"{number} - число делится на 3 нацело")
+task1()
+
+
+
+def task2():
+    def get_digit_sum(n):
+        # Функция для вычисления суммы цифр числа
+        digit_sum = 0
+        while n > 0:
+            digit_sum += n % 10
+            n //= 10
+        return digit_sum
+
+    def print_even_numbers_with_greater_sum(m, numbers):
+        # Функция для вывода на экран чётных чисел с суммой цифр больше m
+        for number in numbers:
+            if number % 2 == 0 and get_digit_sum(number) > m:
+                print(number)
+
+    # Ввод трёх чисел
+    numbers = []
+    for i in range(3):
+        number = float(input(f"Введите {i + 1} - е трёхзначное число: "))
+        numbers.append(number)
+
+    # Заданное значение для суммы цифр
+    m = float(input("Введите значение m: "))
+
+    # Вывод чётных чисел с суммой цифр больше m
+    print_even_numbers_with_greater_sum(m, numbers)
+task2()
 
 
 
