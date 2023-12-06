@@ -95,3 +95,28 @@ def task3():
     result = decimnal_in_new_system(user_number, user_base)
     print(f"Результат перевода: {result} в систему с основанием " f"{user_base}")
 task3()
+
+
+
+def task6():
+    def is_happy(number):
+        number_str = str(number) # Преобразуем номер в строку для работы с цифрами
+
+        if len(number_str) != 6: # Проверяем, что номер состоит ровно из 6 - ти цифр
+            return print("Номер данного билета не существует")
+
+        first_half = number_str[:3] # Разделим номер на первые и последние три цифры
+        second_half = number_str[3:]
+
+        first_sum = sum(int(digit) for digit in first_half) # Вычисляем сумму цифр первой и второй половины номера
+        second_sum = sum(int(digit) for digit in second_half)
+
+        return first_sum == second_sum # Сравниваем суммы и возвращаем результат
+
+    number = int(input("Введите номер билета (от 000000 до 999999): "))
+
+    if is_happy(number):
+        print("Билет счастливый")
+    else:
+        print("Билет несчастливый")
+task6()
