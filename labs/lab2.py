@@ -22,7 +22,7 @@ task1()
 
 
 
-def task2():
+def task5():
     def get_digit_sum(n):
         # Функция для вычисления суммы цифр числа
         digit_sum = 0
@@ -48,7 +48,7 @@ def task2():
 
     # Вывод чётных чисел с суммой цифр больше m
     print_even_numbers_with_greater_sum(m, numbers)
-task2()
+task5()
 
 
 
