@@ -146,3 +146,24 @@ def task9():
 
     print(f"Стоимость поездки в размере {target_price:0.0f} рублей, будет достигнута через " f"{year:0.0f} год(-а) / лет")
 # task9()
+
+
+
+def task8():
+    def sum_of_series(epsilon):
+        n = 2
+        current_sum = 0
+
+        while True:
+            current_sum += 1 / n
+            n += 1
+
+            if (1 / n) < epsilon:
+                print(current_sum)
+                break
+        return current_sum
+
+    epsilon = float(input("Введите желаемую точность: "))
+    result = sum_of_series(epsilon)
+    print(f"Сумма ряда с точностью {epsilon} равна {result:0.4f}")
+task8()
