@@ -120,3 +120,24 @@ def task6():
     else:
         print("Билет несчастливый")
 task6()
+
+
+
+def task8():
+    def sum_of_series(epsilon):
+        n = 2
+        current_sum = 0
+
+        while True:
+            current_sum += 1 / n
+            n += 1
+
+            if (1 / n) < epsilon:
+                print(current_sum)
+                break
+        return current_sum
+
+    epsilon = float(input("Введите желаемую точность: "))
+    result = sum_of_series(epsilon)
+    print(f"Сумма ряда с точностью {epsilon} равна {result:0.4f}")
+task8()
