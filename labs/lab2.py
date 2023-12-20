@@ -143,3 +143,43 @@ def task8():
     result = calculate_series_sum(epsilon)
     print(f"Сумма членов ряда с точностью {epsilon} равна: {result}")
 task8()
+
+
+
+def task2():
+
+    import numpy as np
+    import matplotlib.pyplot as plt
+
+    # Опеределение функции для x <= 0:
+    def f1(x):
+        return np.cos(pi * x)
+
+    # Определение функции для x > 0:
+    def f2(x):
+        return x ** 2 + 1
+
+    # Задание диапазона значений x:
+    a, b = map(float, input("Введите диапазон значений x: "))
+    x = linspace(a, b, 100)
+
+    # Вычислить значения функции f1(x) и f2(x) для всех значений x
+    y1 = np.where(x <= 0, f1(x), np.nan)
+    y2 = np.where(x > 0, f2(x), np.nan)
+
+    # Построение графика
+    plt.plot(x, y1, label = 'f(x) = cos(pi * x), x <= 0')
+    plt.plot(x, y2, label = 'f(x) = x ** 2 + 1, x > 0')
+
+    # Настройка осей и заголовка графика
+    plt.xlabel('x')
+    plt.ylabel('f(x)')
+    plt.zlabel('График функций f(x) = cos(pi * x) и f(x) = x ** 2 + 1')
+
+    # Добавление легенды
+    plt.legend()
+
+    # Отображение графика
+    plt.show()
+
+task2()
