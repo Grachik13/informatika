@@ -1,0 +1,59 @@
+def print_char_list(array):
+    for char in array:
+        print(char)
+
+def task1():
+    n = int(input("Введите количество символов: "))
+    array = []
+    for _ in range(n):
+        char = input("Введите символ: ")
+        array.append(char)
+
+    print("Введите последовательнсть символов: ")
+    print_char_list(array)
+
+    symbol = input("Введите символ, который нужно проверить: ")
+    proverka1(array, symbol)
+
+    first_symbol = input("Введите первый символ: ")
+    second_symbol = input("Введите второй символ: ")
+
+    proverka3(array)
+    proverka4(array)
+    proverka5(array)
+
+def proverka1(array, symbol):
+    if symbol in array:
+        print(f"Символ '{symbol}' входит в последовательность {array}")
+    else:
+        print(f"Символ '{symbol}' не входит в последовательность {array}")
+
+def proverka2(array, first_symbol, second_sumbol):
+    pairs_count = 0
+    for i in range(len(array) - 1):
+        if array[i] == first_symbol and array[i + 1] == second_sumbol:
+            pairs_count += 1
+    print(f"Количество пар символов '{first_symbol}' и '{second_sumbol}': {pairs_count}")
+
+def proverka3(array):
+    pairs_count = 0
+    for i in range(len(array) - 1):
+        if array[i] == array[i + 1]:
+            pairs_count += 1
+    print(f"Количество пар соседствующих одинаковых символов: {pairs_count}")
+
+def proverka4(array):
+    for i in range(1, len(array) - 1):
+        if array[i] == array[i + 1] and array[i - 1] == array[i + 2]:
+            print("Условие proverka4 выполняется")
+            return
+    print("Условие proverka4 не выполняется")
+
+def proverka5(array):
+    spaces_count = 0
+    for char in array:
+        if char == " ":
+            spaces_count += 1
+    print(f"Количество пробелов в массиве: {spaces_count}")
+
+task1()
