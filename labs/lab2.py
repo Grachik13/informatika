@@ -1,4 +1,4 @@
-# variant №9
+
 def task1():
     def is_even(number):
         if number % 2 == 0:
