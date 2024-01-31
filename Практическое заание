@@ -20,9 +20,19 @@ class MainWindow(QMainWindow):
         # Назначим заголовок окна
         self.setWindowTitle("График")
 
+
         # Создание виджетов
         self.canvas = FigureCanvas(plt.figure()) # Создание полотна
 
+        self.plot_button = QPushButton("Нарисовать график")
+        self.plot_button.clicked.connect(self.plot_data)
+
+        self.range_label = QLabel("Диапазон")
+        self.range_start_input = QLineEdit('0')
+        self.range_end_input = QLineEdit('1')
+
+        self.function_label = QLabel("Функция:")
+        self.function_input = QLineEdit('x ** 3')
 
 
         # Создание центрального виджета
@@ -30,17 +40,45 @@ class MainWindow(QMainWindow):
         layout = QVBoxLayout() # Макет, на который будут добавлятся виджеты
         central_widget.setLayout(layout) # Добавление макета на центральный виджет
 
+
         # Добавление виджетов на макет
         layout.addWidget(self.canvas)
+
+        layout.addWidget(self.plot_button)
+
+        layout.addWidget(self.range_label)
+        layout.addWidget(self.range_start_input)
+        layout.addWidget(self.range_end_input)
+
+        layout.addWidget(self.function_label)
+        layout.addWidget(self.function_input)
+
 
         # Установка центрального виджета
         self.setCentralWidget(central_widget)
 
+
         # Вызов функции рисования графика
-        self.plot_data()
+        # self.plot_data()
 
     def plot_data(self):
-        x = np.linspace(0, 1, 50)
+        try:
+            range_start = float(self.range_start_input.text())
+            range_end = float(self.range_end_input.text())
+        except ValueError:
+            range_start = 0
+            range_end = 1
+        # try:
+        #     expression = self.function_input.text()
+        # except ValueError:
+        #     expression = "x ** 3"
+
+        functions = {} # Определим словарь функций
+        exec(f"def f(x): return {expression}", functions)
+        function = functions ["f"]
+
+
+        x = np.linspace(range_start, range_end, 50)
 
         function = lambda x: x ** 3
 
@@ -52,13 +90,11 @@ class MainWindow(QMainWindow):
         plt.xlabel('x')
         plt.ylabel('y')
 
-        plt.title('Заголовок график y = x ** 3')
+        plt.title('Заголовок график' + expression)
+
 
         # Обновление виджета №0 (виджет с полотном Matplotlib)
         self.centralWidget().layout().itemAt(0).widget().draw()
-
-
-
 
 
 # Создать приложение QApplication
