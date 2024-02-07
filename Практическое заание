@@ -106,3 +106,68 @@ main_window.show()
 
 # Запустить приложение
 app.exec_()
+__________________________________________________________________
+
+
+
+
+from tkinter import Tk
+
+window = Tk()
+window.title("Определение попадания точки в область")
+
+
+from tkinter import Canvas
+
+canvas = Canvas(window, width = 500, height = 500)
+
+
+def check_point(x, y):
+    # Очищаем предыдущие контуры, если они есть
+    canvas.deleted("contour")
+
+    # Рисуем контуры фигуры
+    canvas.create_line(100, 100, 200, 100, fill="red", width=2, tages="contour")
+    canvas.create_line(200, 100, 200, 200, fill="red", width=2, tages="contour")
+    canvas.create_line(200, 200, 100, 200, fill="red", width=2, tages="contour")
+    canvas.create_line(100, 200, 100, 100, fill="red", width=2, tages="contour")
+
+    check_point(x, y)
+
+def check_point(x, y):
+    # код для определения попадания точки в область
+
+    pass
+
+
+def check_button_clicked():
+    x = float(x_entry.get())
+    y = float(y_entry.get())
+    if check_point(x, y):
+        result_label.config(text="Точка попадает в область", fg="green")
+    else:
+        result_label.config(text="Точка не попадает в область", fg="red")
+
+
+from tkinter import Entry, Button, Label
+
+x_label = Label (window, text="X:")
+x_label.pack()
+x_entry = Entry(window)
+x_entry.pack()
+
+y_label = Label (window, text="Y:")
+y_label.pack()
+y_entry = Entry(window)
+y_entry.pack()
+
+check_button = Button(window, text="Проверить", command = check_button_clicked)
+check_button.pack()
+
+result_label = Label(window, text="")
+result_label.pack()
+
+window.mainloop()
+
+
+
