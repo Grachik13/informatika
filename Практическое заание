@@ -171,3 +171,88 @@ window.mainloop()
 
 
 
+
+
+
+---------------------------------------------------------------------------------------------
+import tkinter as tk
+
+def check_point(x, y):
+    if x >= 0 and y >= 0 and x**2 + y**2 <= 1:
+        return True
+    else:
+        return False
+
+def update_result_label():
+    x = float(entry_x.get())
+    y = float(entry_y.get())
+
+    if check_point(x, y):
+        result_label.config(text="Точка попадает в область", fg="green")
+    else:
+        result_label.config(text="Точка не попадает в область", fg="red")
+
+def toggle_equation():
+    if equation_checkbox_var.get() == 1:
+        equation_label.config(state=tk.NORMAL)
+        equation_entry.config(state=tk.NORMAL)
+    else:
+        equation_label.config(state=tk.DISABLED)
+        equation_entry.config(state=tk.DISABLED)
+        equation_entry.delete(0, tk.END)
+
+def add_point():
+    x = float(add_point_x_entry.get())
+    y = float(add_point_y_entry.get())
+
+    canvas.create_oval(x-2, y-2, x+2, y+2, fill="blue")
+
+root = tk.Tk()
+root.title("Проверка попадания точки в область")
+
+canvas = tk.Canvas(root, width=400, height=400)
+
+canvas.create_arc(0, 0, 400, 400, start=0, extent=90, outline="black")
+canvas.create_line(200, 0, 200, 400, fill="black")
+canvas.create_line(0, 200, 400, 200, fill="black")
+
+canvas.pack()
+
+entry_x = tk.Entry(root)
+entry_x.pack()
+
+entry_y = tk.Entry(root)
+entry_y.pack()
+
+check_button = tk.Button(root, text="Проверить", command=update_result_label)
+check_button.pack()
+
+result_label = tk.Label(root, text="")
+result_label.pack()
+
+equation_checkbox_var = tk.IntVar()
+equation_checkbox = tk.Checkbutton(root, text="Добавить уравнение", variable=equation_checkbox_var, command=toggle_equation)
+equation_checkbox.pack()
+
+equation_label = tk.Label(root, text="Уравнение:")
+equation_label.pack()
+
+equation_entry = tk.Entry(root, state=tk.DISABLED)
+equation_entry.pack()
+
+add_point_x_label = tk.Label(root, text="X координата:")
+add_point_x_label.pack()
+
+add_point_x_entry = tk.Entry(root)
+add_point_x_entry.pack()
+
+add_point_y_label = tk.Label(root, text="Y координата:")
+add_point_y_label.pack()
+
+add_point_y_entry = tk.Entry(root)
+add_point_y_entry.pack()
+
+add_point_button = tk.Button(root, text="Добавить точку", command=add_point)
+add_point_button.pack()
+
+root.mainloop()
