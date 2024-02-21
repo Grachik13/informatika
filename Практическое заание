@@ -175,6 +175,8 @@ window.mainloop()
 
 
 ---------------------------------------------------------------------------------------------
+task 4.1
+
 import tkinter as tk
 
 def check_point(x, y):
@@ -212,9 +214,10 @@ root.title("Проверка попадания точки в область")
 
 canvas = tk.Canvas(root, width=400, height=400)
 
-canvas.create_arc(0, 0, 400, 400, start=0, extent=90, outline="black")
-canvas.create_line(200, 0, 200, 400, fill="black")
-canvas.create_line(0, 200, 400, 200, fill="black")
+canvas.create_arc(0, 0, 400, 400, start=0, extent=180, outline="black")
+canvas.create_arc(0, 0, 400, 400, start=0, extent=-180, outline="black")
+canvas.create_line(200, 0, 200, 400, fill="pink")
+canvas.create_line(0, 200, 400, 200, fill="pink")
 
 canvas.pack()
 
@@ -240,6 +243,11 @@ equation_label.pack()
 equation_entry = tk.Entry(root, state=tk.DISABLED)
 equation_entry.pack()
 
+
+result_label = tk.Label(root, text="")
+result_label.pack()
+
+
 add_point_x_label = tk.Label(root, text="X координата:")
 add_point_x_label.pack()
 
@@ -251,6 +259,11 @@ add_point_y_label.pack()
 
 add_point_y_entry = tk.Entry(root)
 add_point_y_entry.pack()
+
+
+result_label = tk.Label(root, text="")
+result_label.pack()
+
 
 add_point_button = tk.Button(root, text="Добавить точку", command=add_point)
 add_point_button.pack()
