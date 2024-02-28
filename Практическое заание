@@ -269,3 +269,37 @@ add_point_button = tk.Button(root, text="Добавить точку", command=a
 add_point_button.pack()
 
 root.mainloop()
+
+
+
+
+
+
+
+-------------------------------------------------------------------------------------------
+task(4.1) не до конца
+
+import sys
+from PyQt5.QtWidgets import QApplication, QMainWindow, QGraphicsScene
+from PyQt5.QtGui import QPainter, QColor
+from PyQt5.Qt.Core import Qt
+import matplotlib.pyplot as plt
+
+class MainWindow(QMainWindow):
+    def __init__(self):
+        super().__init__()
+        self.setWindowTitle("Определение попадания точки в область")
+
+        # Создание графической сцены и виджета для вывода графика
+        self.scene = QGraphicsScene()
+        swlf.view = self.scene
+        self.setCentralWidget(self.view)
+
+        # Создание полей ввода и кнопок
+        self.x_input = QtWidgets.QLineEdit(self)
+        self.x_input.move(30, 50)
+        self.y_input = QtWidgets.QLineEdit(self)
+        self.y_input.move(30, 100)
+
+        self.plot_button = QtWidgets.QPushButton("Построить", self)
+        self.plot_button
