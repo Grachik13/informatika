@@ -57,3 +57,45 @@ def proverka5(array):
     print(f"Количество пробелов в массиве: {spaces_count}")
 
 task1()
+
+
+
+
+____________________________________________________________
+import random
+
+# Создадим функцию, которая выводит элементы
+# двухмерного массива символов в виде таблицы
+def print_char_2d_array(array):
+    for row in array:
+        for char in row:
+            print(char, end=" ")
+        print()
+
+# Создадим функцию, которая меняет символы в массиве,
+# заменяя повторяющиеся символы на символ "x"
+def preobrazovanie(array):
+    n = len(array)
+    for i in range(n):
+        for j in range(n):
+            if (i + 1) < n and array[i][j] == array[i + 1][j] and array[i][j] != 'x':
+                array[i][j] = 'x'
+                array[i + 1][j] = 'x'
+            if (j + 1) < n and array[i][j] == array[i][j + 1] and array[i][j] != 'x':
+                array[i][j] = 'x'
+                array[i][j + 1] = 'x'
+
+# Создадим двумерный массив символов заданного размера,
+# заполним его случайными символами
+def task2():
+    n = int(input("Введите заданный размер массива: "))
+    array = [[random.choice('ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789') for _ in range(n + 1)] for _ in range(n + 1)]
+
+    print("Исходный массив")
+    print_char_2d_array(array)
+
+    print("\nМодифицированный массив: ")
+    preobrazovanie(array)
+    print_char_2d_array(array)
+
+task2()
