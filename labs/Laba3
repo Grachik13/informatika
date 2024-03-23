@@ -143,3 +143,61 @@ def task2():
     print_char_2d_array(array)
 
 task2()
+
+
+------------------------------------------------------------------------------
+Окончтельная версия второга задания:
+
+import random
+
+# Создадим функцию, которая выводит элементы
+# двухмерного массива символов в виде таблицы
+def print_char_2d_array(array):
+    for row in array:
+        for char in row:
+            if char == '×':
+                print('\033[91m' + char + '\033[0m', end=" ")
+            else:
+                print(char, end=" ")
+        print()
+
+# Создадим функцию, которая меняет символы в массиве,
+# заменяя повторяющиеся символы на символ "×"
+def preobrazovanie(array):
+    for i in range(len(array)):
+        j = 0
+        while j < (len(array[i]) - 1):
+            count = 1
+            while j + count < len(array[i]) and array[i][j + count] == array[i][j]:
+                count += 1
+            if count >= 2 and array[i][j].isalnum():
+                for k in range(count):
+                    array[i][j + k] = '×'
+            j += count
+            
+    for j in range(len(array)):
+        i = 0
+        while i < (len(array[j]) - 1):
+            count = 1
+            while i + count < len(array[j]) and array[i + count][j] == array[i][j]:
+                count += 1
+            if count >= 2 and array[i][j].isalnum():
+                for s in range(count):
+                    array[i + s][j] = '×'
+            i += count
+
+# Создадим двумерный массив символов заданного размера,
+# заполним его случайными символами
+def task2():
+    alfavit = 'abcdifghigklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789'
+    n = int(input("Введите заданный размер массива: "))
+    array = [[random.choice(alfavit) for _ in range(n + 1)] for _ in range(n + 1)]
+
+    print("Исходный массив")
+    print_char_2d_array(array)
+
+    print("\nМодифицированный массив: ")
+    preobrazovanie(array)
+    print_char_2d_array(array)
+
+task2()
