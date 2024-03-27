@@ -1,0 +1,83 @@
+import matplotlib.pyplot as plt
+import numpy as np
+import math
+from scipy import integrate
+
+
+# RELEY-RASPRED f(t)
+def f(t, K, omega):
+    return (pow(t, K-1) * math.exp(-t/omega)) / (pow(omega, K) * math.factorial(K))
+
+# RELEY-RASPRED tf(t)
+def tf(t, K, omega):
+    return (pow(t, K-1) * math.exp(-t/omega)) / (pow(omega, K) * math.factorial(K)) * t
+
+def disp_f(t, K, omega, mat_oz):
+    return (pow(t, K-1) * math.exp(-t/omega)) / (pow(omega, K) * math.factorial(K)) * pow(t - mat_oz, 2)
+
+
+n = 1000000
+h = math.pow(10,-10)
+K = 9
+omega = 67
+k = 10 #для гаммы наработки
+
+# Функция плотности распределения Релэя
+# Дана нам в задаче
+reley_t = np.zeros(n)
+reley_f = np.zeros(n)
+for i in range(1, n):
+    reley_t[i] = reley_t[i - 1] + h
+    reley_f[i] = f(reley_t[i], K, omega)
+plt.plot(reley_t, reley_f)
+plt.title('Гамма-распределение')
+plt.show()
+
+# Вероятность безотказной работы
+    # Интеграл функции f(t)
+reley_p = np.zeros(n)
+for i in range(1, n):
+    integr = integrate.quad(f, reley_t[0], reley_t[i], args=(K, omega))
+    reley_p[i] = 1 - integr[0]
+plt.plot(reley_t, reley_p)
+plt.title('Вероятность безотказной работы')
+plt.show()
+
+# Интенсивность отказов
+    # f(t) / P(t)
+reley_l = np.zeros(n)
+for i in range (1, n):
+    reley_l[i] = reley_f[i] / reley_p[i]
+reley_l[0] = reley_l[1]
+plt.plot(reley_t, reley_l)
+plt.title('Интенсивность отказов')
+plt.show()
+
+# Гамма-процентная наработка
+reley_gamma = np.zeros(n)
+for i in range(1, n):
+    reley_gamma[i] = 100 * reley_p[i]
+plt.plot(reley_gamma, reley_t, label='Гамма-процентная наработка', color='red')
+plt.title('Гамма-процентная наработка до отказа СИСТЕМЫ:')
+#plt.xlim(3, 100)
+plt.show()
+
+
+# Среднее время безотказной работы
+    # Математическое ожидание
+    # Интеграл t * f(t)8
+integr = integrate.quad(tf, 0, reley_t[reley_t.size - 1], args=(K, omega))
+reley_mat_oz = integr[0]
+print("------- ИССЛЕДОВАНИЕ С ИСПОЛЬЗОВАНИЕМ ПАКЕТА INTEGRATE:")
+print("МАТ. ОЖИДАНИЕ:",  '\t\t\t\t', reley_mat_oz)
+
+# Дисперсия времени безотказаной работы
+    # Интеграл (t - Tср)^2 * f(t)
+integr = integrate.quad(disp_f, 0, reley_t[reley_t.size - 1], args=(K, omega, reley_mat_oz))
+reley_disp = integr[0]
+print("ДИСПЕРСИЯ:",  '\t\t\t\t\t', reley_disp)
+
+# Среднее квадратическое отклонение времени безотказаной работы
+    # Корень из дисперсии
+reley_sr_qrt_otkl = math.sqrt(reley_disp)
+print("СР. КВАДР. ОТКЛОНЕНИЕ:",  '\t\t', reley_sr_qrt_otkl)
