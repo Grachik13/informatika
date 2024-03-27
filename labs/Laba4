@@ -248,3 +248,208 @@ import matplotlib.pyplot as plt
 # plt.text(4, 16.5, 'Fourth')
 # plt.plot([1, 2, 3, 4], [1, 4, 9, 16], 'ro')
 # plt.show()
+
+
+
+
+------------------------------------------------------------------------
+
+
+
+import matplotlib.pyplot as plt
+
+# # Диапазон для осей (х;у). [xmin, xmax, ymin, ymax]
+# plt.axis([0,5,0,20])
+
+
+# # Загловок графика
+# plt.title('My first plot')
+
+
+# # Просnfвление точек графика
+# plt.plot([1,2,3,4], [1,4,9,16], 'ro')
+
+
+# # Показ графика
+# plt.show()
+
+
+
+
+# # Пример, на одном графике - три тренда (sin)
+#
+# import math
+#
+# # Создадим функцию numpy для предоставления данных и для задания границы осей
+# import numpy as np
+#
+# # Сгенерируем набор точек по оси х с помощью функции arange()
+# t = np.arange(0, 2.5, 0.1)
+#
+# # Для оси у воспользуемся функцией map()
+# y1 = np.sin(math.pi * t)
+# y2 = np.sin(math.pi * t + math.pi / 2)
+# y3 = np.sin(math.pi * t - math.pi / 2)
+#
+# # Вывод графиков с помощью разных меток и цветов
+# plt.plot(t, y1, 'b*', t, y2, 'g^', t, y3, 'ys')
+# plt.show()
+#
+# # Используем паттерны, для того чтобы были линии, для упрощения чтения графиков
+# plt.plot(t, y1, 'b--', t, y2, 'g', t, y3, 'y-')
+# plt.show()
+#
+#
+# kwargs - используем для настройки и характеристики объктов
+# matplotlib.pyplot.plot(*args, **kwargs)
+# plt.plot([1,2,4,2,1,0,1,2,1,4], linewidth = 10.0)
+# plt.show()
+#
+#
+# # Функция subplot() - задаёт режим разделения и определяет текущий подграфик
+# # Аргумент состоит из трех целых чисел:
+# # Первое число - определяет кол - во частей, на которое нужно разбить объект по вертикали
+# # Второе число - горизонтальное разделение
+# # Третье число - указывает на текущий подграфик, для которого актуальны команды
+#
+# import numpy as np
+#
+#
+# # Для двух горизонтальных
+# t = np.arange(0, 5, 0.1)
+# y1 = np.sin(2 * np.pi * t)
+# y2 = np.sin(2 * np.pi * t)
+#
+# plt.subplot(211)
+# plt.plot(t, y1, 'b-.')
+#
+# plt.subplot(212)
+# plt.plot(t, y2, 'r--')
+#
+# plt.show()
+#
+#
+# # Для двух вертикальных
+# t = np.arange(0., 1., 0.05)
+# y1 = np.sin(2 * np.pi * t)
+# y2 = np.sin(2 * np.pi * t)
+#
+# plt.subplot(121)
+# plt.plot(t, y1, 'b-.')
+#
+# plt.subplot(122)
+# plt.plot(t, y2, 'r--')
+#
+# plt.show()
+
+
+# # Добавление элементов на график
+# # Добавление текста
+# plt.axis([0, 5, 0, 20])
+# plt.title('My first plot')
+# plt.xlabel('Counting')    # Метка оси
+# plt.ylabel('Square values')
+# plt.plot([1, 2, 3, 4], [1, 4, 9, 16], 'ro')
+# plt.show()
+
+
+# # Изменение шрифта, цвета и размера у графика
+# plt.axis([0, 5, 0, 20])
+# plt.title('My first plot', fontsize=20, fontname='Times New Roman')
+# plt.xlabel('Counting', color='gray', fontsize=15, fontname='Times New Roman')
+# plt.ylabel('Square values', color='gray', fontsize=15, fontname='Times New Roman')
+# plt.plot([1, 2, 3, 4], [1, 4, 9, 16], 'ro')
+# plt.show()
+
+
+# Добавление текста в любом месте график
+# text(x, y, s, fontdict=None, **kwargs)
+# s - это строка с текстом
+# fontdict (опционально) - желаемый шрифт
+
+# # Добавим метку для каждой точки (координаты по всем точка y немного сдвинуться)
+# plt.axis([0, 5, 0, 20])
+# plt.title('My first plot', fontsize=20, fontname='Times New Roman')
+# plt.xlabel('Counting', color='gray', fontsize=15, fontname='Times New Roman')
+# plt.ylabel('Square values', color='gray', fontsize=15, fontname='Times New Roman')
+# plt.text(1, 1.5, 'First')
+# plt.text(2, 4.5, 'Second')
+# plt.text(3, 9.5, 'Third')
+# plt.text(4, 16.5, 'Fourth')
+# plt.plot([1, 2, 3, 4], [1, 4, 9, 16], 'ro')
+# plt.show()
+
+
+# # Добавим выражение на график, для этого его нужно заключить в два символа $
+# # Перед добавлениес выражения нужно добавить r - сырой текст,
+# # это позволит избежать появления исключающих последовательностей
+# plt.axis([0, 5, 0, 20])
+# plt.title('My firts plot', fontsize=20, fontname='Times New Roman')
+# plt.xlabel('Counting', color='gray')
+# plt.ylabel('Square values', color='gray')
+# plt.text(1, 1.5, 'First')
+# plt.text(2, 4.5, 'Second')
+# plt.text(3, 9.5, 'Third')
+# plt.text(4, 16.5, 'Fourth')
+# plt.text(1.1, 12, r'$y = x^2$', fontsize=20, bbox={'facecolor':'yellow','alpha':0.2})
+# plt.plot([1, 2, 3, 4],[1, 4, 9, 16], 'ro')
+# plt.show()
+
+
+# # Добавление сетки (grid(), передав в качестве аргумента True)
+# plt.axis([0, 5, 0, 20])
+# plt.title('My firts plot', fontsize=20, fontname='Times New Roman')
+# plt.xlabel('Counting', color='gray')
+# plt.ylabel('Square values', color='gray')
+# plt.text(1, 1.5, 'First')
+# plt.text(2, 4.5, 'Second')
+# plt.text(3, 9.5, 'Third')
+# plt.text(4, 16.5, 'Fourth')
+# plt.text(1.1, 12, r'$y = x^2$', fontsize=20, bbox={'facecolor':'yellow','alpha':0.2})
+# plt.grid(True)
+# plt.plot([1, 2, 3, 4],[1, 4, 9, 16], 'ro')
+# plt.show()
+
+
+# # Добавление легенды (legend())
+# plt.axis([0, 5, 0, 20])
+# plt.title('My firts plot', fontsize=20, fontname='Times New Roman')
+# plt.xlabel('Counting', color='gray')
+# plt.ylabel('Square values', color='gray')
+# plt.text(1, 1.5, 'First')
+# plt.text(2, 4.5, 'Second')
+# plt.text(3, 9.5, 'Third')
+# plt.text(4, 16.5, 'Fourth')
+# plt.text(1.1, 12, r'$y = x^2$', fontsize=20, bbox={'facecolor':'yellow','alpha':0.2})
+# plt.grid(True)
+# plt.plot([1, 2, 3, 4],[1, 4, 9, 16], 'ro')
+# plt.legend(['First series'])
+# plt.show()
+
+# Чтобы поменять положение легенды, добавим аргумент loc
+# 0 - Лучшее
+# 1 - Верхний правый угол
+# 2 - Верхний левый угол
+# 3 - Нижний левый угол
+# 4 - Нижний правый угол
+# 5 - Справа
+# 6 - Слева по центру
+# 7 - Справа по центру
+# 8 - Снизу по центру
+# 9 - Сверзу по центру
+# 10 - По центру
+plt.axis([0, 5, 0, 20])
+plt.title('My firts plot', fontsize=20, fontname='Times New Roman')
+plt.xlabel('Counting', color='gray')
+plt.ylabel('Square values', color='gray')
+plt.text(1, 1.5, 'First')
+plt.text(2, 4.5, 'Second')
+plt.text(3, 9.5, 'Third')
+plt.text(4, 16.5, 'Fourth')
+plt.text(1.1, 12, r'$y = x^2$', fontsize=20, bbox={'facecolor':'yellow','alpha':0.2})
+plt.grid(True)
+plt.plot([1, 2, 3, 4], [1, 4, 9, 16], 'ro')
+plt.plot([1, 2, 3, 4], [0.8, 3.5, 8, 15], 'g^')
+plt.plot([1, 2, 3, 4], [0.5, 2.5, 4, 12], 'b*')
+plt.legend(['First series', 'Second series', 'Third series'], loc = 2)
+plt.show()
